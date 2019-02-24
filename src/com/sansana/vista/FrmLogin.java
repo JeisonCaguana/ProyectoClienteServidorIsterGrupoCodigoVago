@@ -5,6 +5,7 @@
  */
 package com.sansana.vista;
 
+import com.placeholder.PlaceHolder;
 import com.sansana.controlador.Login;
 import javax.swing.ImageIcon; 
 import javax.swing.JOptionPane;
@@ -19,13 +20,16 @@ public final class FrmLogin extends javax.swing.JFrame {
      * Creates new form FrmLogin
      */
     Login acceso = new Login();
+    PlaceHolder plaseHolder;
     public FrmLogin() {
         setComponentes();
         initComponents();
+        plaseHolder = new PlaceHolder(txtUsuario, "Ingrese su usuario");
+        plaseHolder = new PlaceHolder(txtPassword, "Clave");
     }
     public void setComponentes(){
         this.setUndecorated(true);
-        setIconImage(new ImageIcon(getClass().getResource("/assets/logo.png")).getImage());   
+        setIconImage(new ImageIcon(getClass().getResource("/assets/logo.png")).getImage());
     }    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -44,15 +48,15 @@ public final class FrmLogin extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(612, 409));
         getContentPane().setLayout(null);
 
-        txtUsuario.setText("codigovago");
         txtUsuario.setBorder(null);
+        txtUsuario.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtUsuario.setOpaque(false);
         getContentPane().add(txtUsuario);
         txtUsuario.setBounds(330, 150, 160, 14);
 
         txtPassword.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtPassword.setText("123");
         txtPassword.setBorder(null);
+        txtPassword.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtPassword.setOpaque(false);
         getContentPane().add(txtPassword);
         txtPassword.setBounds(330, 190, 160, 17);

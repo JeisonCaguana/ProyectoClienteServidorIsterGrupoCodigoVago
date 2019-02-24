@@ -5,11 +5,11 @@
  */
 package com.sansana.vista.medicamento;
 
+import com.placeholder.PlaceHolder;
 import com.sansana.modelo.Accesos;
 import com.sansana.modelo.sql.Conexion;
 import com.sansana.modelo.sql.Medicamentos;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.sql.Connection; 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -37,11 +37,13 @@ public final class IfInventario extends javax.swing.JInternalFrame{
     Conexion cc = new Conexion();
     Connection con = cc.getConexion();
     Medicamentos medicamento = new Medicamentos();
+    PlaceHolder plaseHolder;
     
     
     public IfInventario() {
         initComponents();
         setComponentes();
+        plaseHolder = new PlaceHolder(txtBuscar, "Código de Busqueda");
     }
     void setComponentes(){
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
@@ -51,9 +53,9 @@ public final class IfInventario extends javax.swing.JInternalFrame{
         DefaultTableModel modelo= new DefaultTableModel();
         modelo.addColumn("CÓDIGO"); 
         modelo.addColumn("NOMBRE");
-        modelo.addColumn("DESCRIPCIÓN");
+        modelo.addColumn("PRECIO");
         modelo.addColumn("CATEGORIA");
-        modelo.addColumn("PRÉCIO");
+        modelo.addColumn("DESCRIPCIÓN");
         modelo.addColumn("FECHA-REGUISTRO");
         tabla.setModel(modelo);
         String query="";

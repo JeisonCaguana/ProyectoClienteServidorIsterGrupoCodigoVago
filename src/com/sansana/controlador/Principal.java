@@ -5,15 +5,17 @@
  */
 package com.sansana.controlador;
 
-import com.sansana.modelo.Accesos; 
+import com.sansana.modelo.Accesos;
 
 /**
  *
  * @author JEISON CAGUANA - PAOLA VILLA - GRUPO CODIGO VAGO
  */
 public class Principal {
+
     static Accesos acceso = new Accesos();
+
     public static void main(String[] args) {
-         acceso.FrmMenu();
+        acceso.FrmLogin();
     }
 }

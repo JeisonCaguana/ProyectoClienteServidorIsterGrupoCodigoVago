@@ -5,7 +5,9 @@
  */
 package com.sansana.vista.medicamento;
 
+import com.placeholder.PlaceHolder;
 import com.sansana.modelo.Medicamento;
+import com.sansana.modelo.ValidarCampos;
 import com.sansana.modelo.sql.Medicamentos;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -22,10 +24,19 @@ public final class FrmAdministracion extends javax.swing.JFrame {
     Medicamentos medicamentos= new Medicamentos();
     Medicamento medicamento= new Medicamento();
     IfInventario ventana = new IfInventario();
+    ValidarCampos validar = new ValidarCampos();
+    PlaceHolder plaseHolder;
     public FrmAdministracion() {
         setComponentes();
         initComponents(); 
         rellenar();
+        plaseHolder();
+    }
+    void plaseHolder(){
+        plaseHolder = new PlaceHolder(txtCodigo, "1");
+        plaseHolder = new PlaceHolder(txtNombre, "Nombre");
+        plaseHolder = new PlaceHolder(txtPrecio, "0.50");
+        plaseHolder = new PlaceHolder(txtDescripcion, "Descripción");
     }
     void setComponentes(){
         this.setUndecorated(true);
@@ -128,18 +139,33 @@ public final class FrmAdministracion extends javax.swing.JFrame {
         txtPrecio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtPrecio.setBorder(null);
         txtPrecio.setOpaque(false);
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 100, 30));
 
         txtNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtNombre.setForeground(new java.awt.Color(24, 46, 74));
         txtNombre.setBorder(null);
         txtNombre.setOpaque(false);
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 220, 30));
 
         txtCodigo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtCodigo.setForeground(new java.awt.Color(24, 46, 74));
         txtCodigo.setBorder(null);
         txtCodigo.setOpaque(false);
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 220, 30));
 
         btnSalir3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/max.png"))); // NOI18N
@@ -192,7 +218,7 @@ public final class FrmAdministracion extends javax.swing.JFrame {
         if (txtCodigo.getText().equals("") || txtNombre.equals("") || txtPrecio.equals("") || cajaCategoria.getSelectedItem().equals("Seleccione") || txtDescripcion.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Hay campos vacios, debe llenar todos los datos");
         } else {
-            if (!medicamentos.actualizar(Integer.parseInt(txtCodigo.getText()), txtNombre.getText(), txtDescripcion.getText(), (String) cajaCategoria.getSelectedItem(), txtDescripcion.getText()) ){
+            if (!medicamentos.actualizar(Integer.parseInt(txtCodigo.getText()), txtNombre.getText(), txtPrecio.getText(), (String) cajaCategoria.getSelectedItem(), txtDescripcion.getText()) ){
                 JOptionPane.showMessageDialog(null, "Error al Guardar");
             } else {
                 JOptionPane.showMessageDialog(null, "Registro Actualizado, Click en Refrescar");
@@ -230,6 +256,18 @@ public final class FrmAdministracion extends javax.swing.JFrame {
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
+        validar.soloNumeros(evt);
+    }//GEN-LAST:event_txtCodigoKeyTyped
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        validar.soloLetras(evt);
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+        validar.soloPrecio(evt);        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecioKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
